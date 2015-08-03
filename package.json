@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/erikbarzdukas/2015-06-mvp#readme",
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "multer": "^1.0.1"
   }
 }
