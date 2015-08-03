@@ -35,3 +35,6 @@ bower_components/
 .floobit
 .floo
 .flooignore
+
+# Pls don't take my api key guise
+server/config.js
