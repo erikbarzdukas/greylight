@@ -6,21 +6,14 @@ var model = require('./model');
  * Create a hash from a file input
  * then pass it to exports.store
  */
-exports.hash = function(file, cb){
+exports.hash = function(filePath){
 
   var shasum = crypto.createHash('sha256');
-  var f = fs.ReadStream(file.path);
+  var f = fs.readFileSync(filePath);
 
-  f.on('data', function(d){
-    shasum.update(d);
-  });
+  shasum.update(f);
 
-  f.on('end', function(){
-    var digest = shasum.digest('hex');
-    console.log(digest + ' ' + file.path);
-    exports.store(digest, file, cb);
-  });
-
+  return shasum.digest('hex');
 }
 
 /**
@@ -29,7 +22,9 @@ exports.hash = function(file, cb){
  * expects input param file to be
  * file object from multer
  */
-exports.store = function(digest, file, cb){
+exports.store = function(file, cb){
+  var digest = exports.hash(file.path);
+
   var File = new model.File({
     filename: file.originalname,
     digest: digest,
