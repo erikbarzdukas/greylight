@@ -1,8 +1,11 @@
 var utils = require('../utils');
-var file = require('../model');
+var model = require('../model');
 
 exports.get = function(req, res, next){
-  res.send("Api is hooked up");
+
+  model.File.find(function(err, files){
+    res.json(files);
+  });
 }
 
 exports.post = function(req, res, next){
