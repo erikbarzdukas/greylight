@@ -3,6 +3,7 @@
  */
 var express = require('express');
 var app = express();
+var api = require('./routes/api');
 
 /* GETS */
 app.get('/', function(req, res){
@@ -13,7 +14,7 @@ app.get('/samples', function(req, res){
   res.send("Shh.. samples live here.");
 });
 
-
+app.get('/api', api.get);
 /* POSTS */
 
 
