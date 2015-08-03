@@ -16,9 +16,10 @@ app.use(express.static('./static'));
 /* GETS */
 app.get('/', site.index);
 app.get('/samples', site.samples);
-
 app.get('/api', api.get);
+
 /* POSTS */
+app.post('/api', api.post);
 
 
 
