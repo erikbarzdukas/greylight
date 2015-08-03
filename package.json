@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/erikbarzdukas/2015-06-mvp/issues"
   },
-  "homepage": "https://github.com/erikbarzdukas/2015-06-mvp#readme"
+  "homepage": "https://github.com/erikbarzdukas/2015-06-mvp#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
 }
