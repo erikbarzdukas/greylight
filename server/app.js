@@ -7,13 +7,13 @@ var app = express();
 var multer = require('multer');
 var api = require('./routes/api');
 var site = require('./routes/site');
-var upload = multer({dest: 'uploads/'});
+var upload = multer({dest: 'server/uploads/'});
 
 /**
  * Middleware
  */
 app.use(express.static('./static'));
-
+app.use(express.static('./uploads'));
 /* GETS */
 app.get('/', site.index);
 app.get('/samples', site.samples);
