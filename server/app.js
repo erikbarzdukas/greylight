@@ -2,17 +2,20 @@
  * All dem modules
  */
 var express = require('express');
+var path = require('path');
 var app = express();
 var api = require('./routes/api');
+var site = require('./routes/site');
+
+/**
+ * Middleware
+ */
+app.use(express.static('./static'));
+
 
 /* GETS */
-app.get('/', function(req, res){
-  res.send("Welcome to GreyLight");
-});
-
-app.get('/samples', function(req, res){
-  res.send("Shh.. samples live here.");
-});
+app.get('/', site.index);
+app.get('/samples', site.samples);
 
 app.get('/api', api.get);
 /* POSTS */
