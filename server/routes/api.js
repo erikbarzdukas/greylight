@@ -3,6 +3,5 @@ exports.get = function(req, res, next){
 }
 
 exports.post = function(req, res, next){
-  console.log(req.files);
   res.sendStatus(200)
 };
