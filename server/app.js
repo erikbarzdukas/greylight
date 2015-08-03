@@ -4,14 +4,15 @@
 var express = require('express');
 var path = require('path');
 var app = express();
+var multer = require('multer');
 var api = require('./routes/api');
 var site = require('./routes/site');
+var upload = multer({dest: 'uploads/'});
 
 /**
  * Middleware
  */
 app.use(express.static('./static'));
-
 
 /* GETS */
 app.get('/', site.index);
@@ -19,7 +20,7 @@ app.get('/samples', site.samples);
 app.get('/api', api.get);
 
 /* POSTS */
-app.post('/api', api.post);
+app.post('/api', upload.single('filedata'), api.post);
 
 
 
