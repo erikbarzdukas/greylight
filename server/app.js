@@ -12,8 +12,8 @@ var upload = multer({dest: 'server/uploads/'});
 /**
  * Middleware
  */
-app.use(express.static('./static'));
-app.use(express.static('./uploads'));
+app.use(express.static('server/static'));
+app.use(express.static('server/uploads'));
 /* GETS */
 app.get('/', site.index);
 app.get('/samples', site.samples);
