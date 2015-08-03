@@ -1,10 +1,17 @@
 var utils = require('../utils');
+var file = require('../model');
 
 exports.get = function(req, res, next){
   res.send("Api is hooked up");
 }
 
 exports.post = function(req, res, next){
-  utils.hash(req.file.path);
-  res.sendStatus(200)
+  utils.hash(req.file, function(err){
+    if(err){
+      console.log(err);
+      res.sendStatus(500);
+    } else {
+      res.sendStatus(200);
+    }
+  });
 };
