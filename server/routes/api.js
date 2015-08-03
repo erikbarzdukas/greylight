@@ -6,7 +6,7 @@ exports.get = function(req, res, next){
 }
 
 exports.post = function(req, res, next){
-  utils.hash(req.file, function(err){
+  utils.store(req.file, function(err){
     if(err){
       console.log(err);
       res.sendStatus(500);
