@@ -1,0 +1,22 @@
+{
+  "name": "greylight",
+  "version": "0.0.1",
+  "description": "Malware sample sharing",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erikbarzdukas/2015-06-mvp.git"
+  },
+  "keywords": [
+    "malware"
+  ],
+  "author": "erik barzdukas",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/erikbarzdukas/2015-06-mvp/issues"
+  },
+  "homepage": "https://github.com/erikbarzdukas/2015-06-mvp#readme"
+}
