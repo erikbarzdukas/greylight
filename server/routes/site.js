@@ -1,5 +1,5 @@
 exports.index = function(req, res, next){
-  res.send('Welcome to GreyLight');
+  res.send('../client/index.html');
 }
 
 exports.samples = function(req, res, next){
