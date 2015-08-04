@@ -22,7 +22,7 @@ exports.hash = function(filePath){
  * expects input param file to be
  * file object from multer
  */
-exports.store = function(file, cb){
+exports.storeFile = function(file, cb){
   var digest = exports.hash(file.path);
 
   var File = new model.File({
