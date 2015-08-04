@@ -2,9 +2,21 @@ var utils = require('../utils');
 var model = require('../model');
 
 /* Return JSON of all files in DB */
-exports.get = function(req, res, next){
+exports.getFiles = function(req, res, next){
 
   model.File.find(function(err, files){
+    if(err) {
+      res.sendStatus(500);
+    } else {
+      res.json(files);
+    }
+  });
+}
+
+/* Return JSON of all scans in DB */
+exports.getScans = function(req, res, next){
+
+  model.Scan.find(function(err, files){
     if(err) {
       res.sendStatus(500);
     } else {
