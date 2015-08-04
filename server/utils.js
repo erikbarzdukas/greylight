@@ -2,6 +2,8 @@ var fs = require('fs');
 var crypto = require('crypto');
 var model = require('./model');
 var Promise = require('bluebird');
+var http = require('http');
+var config = require('./config');
 
 /**
  * Create a hash from a file input
@@ -25,6 +27,9 @@ exports.hash = function(filePath){
  */
 exports.storeFile = function(file, cb){
   var digest = exports.hash(file.path);
+ 
+  /* Get scan for file if it doesn't exist */ 
+  getScan(digest);
 
   var File = new model.File({
     filename: file.originalname,
@@ -37,6 +42,52 @@ exports.storeFile = function(file, cb){
       cb(err);
     } else {
       cb(null);
+    }
+  });
+}
+
+/**
+ * Get a scan from the Virus Total api
+ * for a file if it does not exist in database
+ * Expects a sha256 hash
+ */
+var getScan = function(digest) {
+  var promise = model.Scan.find({digest : digest}).exec();
+  promise.then(function(docs) {
+    if(docs.length < 1) {
+      
+      var postData = JSON.stringify({
+        "apikey" : config.virusTotalApiKey,
+        "resource" : digest
+      });
+      console.log(postData);
+
+      var options = {
+        hostname: "www.virustotal.com",
+        path: "/vtapi/v2/file/report",
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Length': postData.length
+        }
+      };
+      
+      var req = http.request(options, function(res) {
+        console.log("Status ", res.statusCode);
+        console.log("Headers ", JSON.stringify(res.headesr));
+        res.setEncoding('UTF8');
+        res.on('data', function(chunk) {
+          console.log("Body ", chunk);
+        });
+      });
+      
+      req.on('error', function(err) {
+        console.log("Error with request ", "\n", err.message);
+        console.log(err.stack);
+      });
+      
+      req.write(postData);
+      req.end();
     }
   });
 }
