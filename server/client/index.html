@@ -12,7 +12,7 @@
   <script src="/models/scanModel.js"></script>
   
   <!-- app collections -->
-  <script src="/collections/modelCollection.js"></script>
+  <script src="/collections/fileCollection.js"></script>
   <script src="/collections/scanCollection.js"></script>
 
   <!-- app views -->
@@ -26,7 +26,11 @@
   <div id="app"></div>
   <script>
     $(document).ready(function() {
-      var app = new AppModel();
+      var files = new FileCollection();
+      var scans = new ScanCollection();
+
+      var app = new AppModel({files: files, scans: scans});
+      var appView = new AppView({model: app});
     });
   </script>
 
