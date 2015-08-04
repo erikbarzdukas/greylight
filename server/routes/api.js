@@ -28,7 +28,7 @@ exports.getByDigest = function(req, res, next){
 /* Handle upload of a file */
 exports.post = function(req, res, next){
   
-  utils.store(req.file, function(err){
+  utils.storeFile(req.file, function(err){
     if(err){
       console.log(err);
       res.sendStatus(500);
