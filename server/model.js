@@ -8,3 +8,11 @@ exports.File = mongoose.model('File', {
   location: String,
   VTreport: String,
 });
+
+exports.Scan = mongoose.model('Scan', {
+  scan: Object,
+  md5: String,
+  sha1: String,
+  sha256: String,
+  url: String
+});
