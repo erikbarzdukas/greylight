@@ -16,8 +16,9 @@ app.use(express.static('server/uploads'));
 
 /* GETS */
 app.get('/', site.index);
-app.get('/api', api.get);
-app.get('/api/:digest', api.getByDigest);
+app.get('/api/files', api.getFiles);
+app.get('/api/files/:digest', api.getByDigest);
+app.get('/api/scans', api.getScans);
 
 /* POSTS */
 app.post('/api', upload.single('filedata'), api.post);
