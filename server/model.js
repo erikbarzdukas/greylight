@@ -10,5 +10,13 @@ exports.File = mongoose.model('File', {
 });
 
 exports.Scan = mongoose.model('Scan', {
-  scan: Object,
+  md5 : String,
+  sha1: String,
+  sha256: String,
+  scan_date: Date,
+  positives: Number,
+  total: Number,
+  scans: Object,
+  permalink: String,
+  resource: String
 });
