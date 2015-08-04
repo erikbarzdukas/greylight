@@ -1,24 +1,23 @@
 var FileCollection = Backbone.Collection.extend({
-  url: '/api/files',
+  url: 'http://127.0.0.1:3000/api/files',
   model: FileModel,
 
   addFiles: function() {
-    $.get(
-        '/api/files',
+    $.get(this.url,
         function(files) {
           for(var i = 0; i < files.length; i++) {
             this.add({
               filename: files[i].filename,
               digest: files[i].digest,
               location: files[i].location,
-              VTreport: files[i].VTreport
+              //VTreport: files[i].VTreport
             });
           }
-        }.bind(this);
+        }.bind(this)
     );
   },
 
-  intialize: function() {
-    this.addFiles()
+  initialize: function() {
+    this.addFiles();
   }
 });
