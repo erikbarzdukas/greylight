@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+  <!-- libraries -->
+  <script src="/bower_components/backbone/backbone.js"></script>
+  <script src="/bower_components/underscore/underscore.js"></script>
+
+  <!-- app models -->
+  <script src="/models/appModel.js"></script>
+  <script src="/models/fileModel.js"></script>
+  <script src="/models/scanModel.js"></script>
+  
+  <!-- app collections -->
+  <script src="/collections/modelCollection.js"></script>
+  <script src="/collections/scanCollection.js"></script>
+
+  <!-- app views -->
+  <script src="/views/appView.js"></script>
+  <script src="/views/fileView.js"></script>
+  <script src="views/scanView.js"></script>
+
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    $(document).ready(function() {
+      var app = new AppModel();
+    });
+  </script>
+
+</body>
+</html>
