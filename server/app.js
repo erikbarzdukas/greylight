@@ -16,7 +16,6 @@ app.use(express.static('server/uploads'));
 
 /* GETS */
 app.get('/', site.index);
-app.get('/samples', site.samples);
 app.get('/api', api.get);
 app.get('/api/:digest', api.getByDigest);
 
