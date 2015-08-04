@@ -4,6 +4,7 @@ var model = require('./model');
 var Promise = require('bluebird');
 var http = require('http');
 var config = require('./config');
+var Formdata = require('form-data');
 
 /**
  * Create a hash from a file input
@@ -55,43 +56,26 @@ var getScan = function(digest) {
   var promise = model.Scan.find({digest : digest}).exec();
   promise.then(function(docs) {
     if(docs.length < 1) {
-      
-      var postData = JSON.stringify({
-        "apikey" : config.virusTotalApiKey,
-        "resource" : digest
-      });
-      console.log(postData);
+     
+      var form = new Formdata();
+      var url = 'https://www.virustotal.com/vtapi/v2/file/report';
 
-      var options = {
-        hostname: "www.virustotal.com",
-        path: "/vtapi/v2/file/report",
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Content-Length': postData.length
-        }
-      };
-      
-      var req = http.request(options, function(res) {
+      form.append('apikey', config.virusTotalApiKey);
+      form.append('resource', digest);
+
+      form.submit(url, function(err, res) {
+        var data;
         console.log("Status ", res.statusCode);
-        console.log("Headers ", JSON.stringify(res.headesr));
-        res.setEncoding('UTF8');
         res.on('data', function(chunk) {
-          console.log("Body ", chunk);
+          data += chunk;
+        });
+        res.on('end', function() {
+          storeScan(JSON.stringify(data));
         });
       });
-      
-      req.on('error', function(err) {
-        console.log("Error with request ", "\n", err.message);
-        console.log(err.stack);
-      });
-      
-      req.write(postData);
-      req.end();
     }
   });
-}
-
+} 
 
 /**
  * Stores scans -> updates if scan exists
@@ -99,15 +83,37 @@ var getScan = function(digest) {
  */
 /* Promisified way to retrieve scan docs */
 var storeScan = function(scan){
-  var promise = model.Scan.find({digest : scan.sha256}).exec();
+  scan.replace('undefined', '');
+  console.log(scan);
+  var scan = JSON.parse(scan);
+
+  var promise = model.Scan.find({resource: scan.sha256}).exec();
   promise.then(function(docs){
+    console.log(docs[0].scan.sha256);
     if(docs.length < 1) {
-      var newScan = new Scan({
-        scan: scan
+      var newScan = new model.Scan({
+        resource: scan.resource,
+        md5: scan.md5,
+        sha1: scan.sha1,
+        sha256: scan.sha256,
+        scan_date: scan.scan_date,
+        positives: scan.positives,
+        total: scan.total,
+        scans: scan.scans,
+        permalink: scan.permalink
       });
+      console.log(newScan);
       newScan.save();
     } else {
       docs[0].scan = scan;
+      docs[0].md5 = scan.md5,
+      docs[0].sha1 = scan.sha1,
+      docs[0].sha256 = scan.sha256,
+      docs[0].scan_date = scan.scan_date,
+      docs[0].positives = scan.positives,
+      docs[0].total = scan.total,
+      docs[0].scans = scan.scans,
+      docs[0].permalink = scan.permalink,
       docs[0].save();
     }
   });
