@@ -10,7 +10,8 @@ var FileCollection = Backbone.Collection.extend({
               filename: files[i].filename,
               digest: files[i].digest,
               location: files[i].location,
-              //VTreport: files[i].VTreport
+              VTreport: files[i].VTreport,
+              download: files[i].location.replace('server/uploads/', '')
             });
           }
         }.bind(this)
