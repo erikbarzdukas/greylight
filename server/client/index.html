@@ -19,18 +19,15 @@
   <!-- app views -->
   <script src="/views/appView.js"></script>
   <script src="/views/fileView.js"></script>
-  <script src="views/scanView.js"></script>
+  <script src="/views/filesView.js"></script> 
+  <script src="/views/scanView.js"></script>
 
 </head>
 <body>
   <h2>GreyLight</h2>
-  <div id="app"></div>
   <script>
     $(document).ready(function() {
-      var files = new FileCollection();
-      var scans = new ScanCollection();
-
-      var app = new AppModel({files: files, scans: scans});
+      var app = new AppModel();
       var appView = new AppView({model: app});
     });
   </script>
