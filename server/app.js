@@ -12,7 +12,7 @@ var upload = multer({dest: 'server/uploads/'});
 
 /* Middleware  */
 app.use(express.static('server/static'));
-app.use(express.static('server/uploads'));
+app.use(express.static('server/client'));
 
 /* GETS */
 app.get('/', site.index);
