@@ -1,0 +1,25 @@
+{
+  "name": "greylight",
+  "version": "0.0.1",
+  "homepage": "https://github.com/erikbarzdukas/2015-06-mvp",
+  "authors": [
+    "Erik Barzdukas <erik.bardzdukas@gmail.com>"
+  ],
+  "description": "greylight front end",
+  "main": "index.html",
+  "moduleType": [
+    "node"
+  ],
+  "license": "GPL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.1",
+    "jquery": "~2.1.4"
+  }
+}
