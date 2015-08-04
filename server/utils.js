@@ -18,7 +18,7 @@ exports.hash = function(filePath){
   shasum.update(f);
 
   return shasum.digest('hex');
-}
+};
 
 /**
  * Store file upload in mongodb
@@ -45,7 +45,7 @@ exports.storeFile = function(file, cb){
       cb(null);
     }
   });
-}
+};
 
 /**
  * Get a scan from the Virus Total api
@@ -75,7 +75,7 @@ var getScan = function(digest) {
       });
     }
   });
-} 
+};
 
 /**
  * Stores scans -> updates if scan exists
@@ -117,4 +117,4 @@ var storeScan = function(scan){
       docs[0].save();
     }
   });
-}
+};

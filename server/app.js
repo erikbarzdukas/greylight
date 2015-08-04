@@ -29,11 +29,11 @@ app.post('/api', upload.single('filedata'), api.post);
  * Here be dragons.
  * And server configs
  */
-var port = process.env.PORT || 3000
+var port = process.env.PORT || 3000;
 
 var server = app.listen(port, function(){
   var host = server.address().address;
   var port = server.address().port;
   
-  console.log("Listening on http://%s:%s", host, port)
+  console.log("Listening on http://%s:%s", host, port);
 });

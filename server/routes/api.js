@@ -11,7 +11,7 @@ exports.getFiles = function(req, res, next){
       res.json(files);
     }
   });
-}
+};
 
 /* Return JSON of all scans in DB */
 exports.getScans = function(req, res, next){
@@ -23,7 +23,7 @@ exports.getScans = function(req, res, next){
       res.json(files);
     }
   });
-}
+};
 
 /* Return JSON of all files that have digest param */
 exports.getByDigest = function(req, res, next){
@@ -35,7 +35,7 @@ exports.getByDigest = function(req, res, next){
       res.json(files);
     }
   });
-}
+};
 
 /* Handle upload of a file */
 exports.post = function(req, res, next){
