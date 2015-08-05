@@ -64,13 +64,13 @@ var getScan = function(digest) {
       form.append('resource', digest);
 
       form.submit(url, function(err, res) {
-        var data;
+        var data = '';
         console.log("Status ", res.statusCode);
         res.on('data', function(chunk) {
           data += chunk;
         });
         res.on('end', function() {
-          storeScan(JSON.stringify(data));
+          storeScan(data);
         });
       });
     }
@@ -83,13 +83,11 @@ var getScan = function(digest) {
  */
 /* Promisified way to retrieve scan docs */
 var storeScan = function(scan){
-  scan.replace('undefined', '');
-  console.log(scan);
   var scan = JSON.parse(scan);
+  console.log(scan);
 
-  var promise = model.Scan.find({resource: scan.sha256}).exec();
+  var promise = model.Scan.find({sha256: scan.sha256}).exec();
   promise.then(function(docs){
-    console.log(docs[0].scan.sha256);
     if(docs.length < 1) {
       var newScan = new model.Scan({
         resource: scan.resource,
@@ -102,7 +100,6 @@ var storeScan = function(scan){
         scans: scan.scans,
         permalink: scan.permalink
       });
-      console.log(newScan);
       newScan.save();
     } else {
       docs[0].scan = scan;
