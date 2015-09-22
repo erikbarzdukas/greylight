@@ -24,7 +24,7 @@ to entry for curious minds.
 The new frontier of war is the electron, and GreyLight helps to spread awareness and accessibility to the theater.
 
 ## How to Get Started ##
-  Navigate to [https://greylight.com/samples](https://greylight.com/samples) to see our collection.
+Navigate to <TODO> to see our collection.
 
 ## Customer Quote ##
   "Before GreyLight, our information assurance training program was burdened with collecting valuable and educational samples of malware,
