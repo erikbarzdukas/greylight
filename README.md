@@ -4,6 +4,8 @@
 
 ## "Shining light on those hard to reach places"  ##
 
+## In Progress! ##
+
 ## Summary ##
   GreyLight is a malware sample file upload/download service that packages VirusTotal information with samples. This enables
 an easier and more rapid spread of malware samples among researches and other interested parties. 
